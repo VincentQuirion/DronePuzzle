@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DroneBlocks Editor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <p id="DroneBlocks-logo">DronePuzzle</p>
+        <div class="header-links">
+            <a href="e" class="header-link">How it works</a>
+            <a href="yeah" class="header-link">About</a>
+        </div>
+    </header>
+    <hr/>
+    <div id="blockly-UI">
+        <div id="blocklyDiv"></div>
+        <textarea wrap="soft" placeholder="Your machine code will appear here..." disabled id="textarea"></textarea>
+    </div>
+
+    <hr/>
+    <footer>
+        <p>Made with &hearts; (+ <a href="https://developers.google.com/blockly">Blockly</a> and <a href="http://dronekit.io/">DroneKit</a>) by <b>Vincent Quirion</b></p>
+    </footer>
+</body>
+</html>
+
+<script src="./google-blockly-ba6dfd8/blockly_compressed.js"></script>
+<script src="./google-blockly-ba6dfd8/python_compressed.js"></script>
+<script src="./google-blockly-ba6dfd8/blocks_compressed.js"></script>
+
+<script src="./google-blockly-ba6dfd8/msg/js/en.js"></script>
+
+<script src="google-blockly-ba6dfd8/custom_blocks/movements.js"></script>
+<script src="google-blockly-ba6dfd8/custom_blocks/movement_code_generators.js"></script>
+<script src="google-blockly-ba6dfd8/custom_blocks/extensions.js"></script>
+
+<script src="google-blockly-ba6dfd8/custom_blocks/camera.js"></script>
+<script src="google-blockly-ba6dfd8/custom_blocks/camera_code_generator.js"></script>
+
+<script src="google-blockly-ba6dfd8/custom_blocks/facial_recognition.js"></script>
+<script src="google-blockly-ba6dfd8/custom_blocks/facial_recognition_code_generators.js"></script>
+
+<script src="google-blockly-ba6dfd8/custom_blocks/faces.js"></script>
+<script src="google-blockly-ba6dfd8/custom_blocks/faces_code_generator.js"></script>
+
+
+<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+    <category name="Mouvements" colour="#995ba5">
+        <block type="takeoff">
+            <field name="HEIGHT">10</field>
+        </block>
+        <block type="move">
+            <field name="DIRECTION">UP</field>
+            <field name="DISTANCE">10</field>
+            <field name="DISTANCE_UNIT">METERS</field>
+        </block>
+        <block type="move_while">
+            <field name="DIRECTION">UP</field>
+            <field name="DISTANCE">10</field>
+            <field name="DISTANCE_UNIT">METERS</field>
+            <field name="WHILE/ONCE">WHILE</field>
+        </block>
+        <block type="goto">
+            <field name="LATITUDE">0</field>
+            <field name="LONGITUDE">0</field>
+            <field name="SPEED">5</field>
+            <field name="TIME_UNIT">METERS_PER_SEC</field>
+        </block>
+        <block type="goto_while">
+            <field name="LATITUDE">0</field>
+            <field name="LONGITUDE">0</field>
+            <field name="SPEED">5</field>
+            <field name="TIME_UNIT">METERS_PER_SEC</field>
+            <field name="while/once">DO</field>
+        </block>
+        <block type="scan">
+            <field name="LATITUDE">0</field>
+            <field name="LONGITUDE">0</field>
+        </block>
+        <block type="scan_while">
+            <field name="LATITUDE">0</field>
+            <field name="LONGITUDE">0</field>
+            <field name="while/once">DO</field>
+        </block>
+        <!-- Generated code not working yet...
+        <block type="wait">
+            <field name="TIME">0</field>
+            <field name="TIME_UNIT">SECOND</field>
+        </block>
+        -->
+        <!-- Generated code not working yet...
+        <block type="stop"></block>
+        -->
+    </category>
+    <sep></sep>
+    <category name="Extensions" colour="#5b67a5">
+        <block type="safe_switch">
+            <field name="ON/OFF">ON</field>
+            <field name="PIN#1">12</field>
+            <field name="Pin#2">13</field>
+            <field name="Pin#3">14</field>
+        </block>
+        <block type="arm_switch">
+            <field name="ARM_SWITCH">OFF</field>
+            <field name="PIN#1">9</field>
+            <field name="PIN#2">10</field>
+            <field name="PIN#3">11</field>
+        </block>
+    </category>
+    <category name="Camera" colour="#5ba55b">
+        <block type="picture">
+            <field name="WIDTH">1080</field>
+            <field name="HEIGHT">1080</field>
+        </block>
+        <block type="timed_video">
+            <field name="TIME">2</field>
+            <field name="TIME_UNIT">SECOND</field>
+            <field name="WIDTH">1080</field>
+            <field name="HEIGHT">1080</field>
+        </block>
+    </category>
+    <sep></sep>
+    <category name="Facial Recognition" colour="#9fa55b">
+        <block type="if_in_face_list">
+            <field name="in/not_in">IN</field>
+            <field name="face_list">CURRENT_FACES</field>
+        </block>
+        <block type="and_or">
+            <field name="and/or">AND</field>
+        </block>
+    </category>
+    <category name="Faces" colour="#a5745b">
+        <block type="face">
+            <field name="faces">VINCENT</field>
+        </block>
+        <block type="face">
+            <field name="faces">CHARLES</field>
+        </block>
+    </category>
+</xml>
+
+<script>
+    var workspace = Blockly.inject('blocklyDiv',
+        {toolbox: document.getElementById('toolbox')});
+</script>
+
+<script src="google-blockly-ba6dfd8/custom_blocks/add_init_code_to_code_variable.js"></script>
+
+<script>function codeUpdateFunction(event) {
+    var code = Blockly.Python.workspaceToCode(workspace);
+    code = add_init_code_to_code_variable(code);
+    document.getElementById('textarea').value = code
+}
+workspace.addChangeListener(codeUpdateFunction);
+</script>

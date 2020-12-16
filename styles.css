@@ -1,0 +1,76 @@
+@font-face {
+    font-family: Mohave-Bold;
+    src: url(fonts/mohave/Mohave-Bold.otf);
+}
+
+@font-face {
+    font-family: Mohave-SemiBolf;
+    src: url(fonts/mohave/Mohave-SemiBold.otf);
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.header-links {
+    align-self: center;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.header-link {
+    font-family: Mohave-Bold;
+    font-size: 22px;
+    align-self: center;
+    color: #DB2D1F;
+    padding-right: 150px;
+}
+
+#DroneBlocks-logo {
+    font-family: Mohave-Bold;
+    font-size: 40px;
+    color: #DB2D1F;
+    align-self: center;
+    margin: 0px;
+    flex-grow: 2;
+}
+
+footer {
+    font-family: Mohave-Bold;
+    background: white;
+    text-align: center;
+    color: #DB2D1F;
+}
+
+a {
+    color: inherit;
+}
+
+hr {
+    width: 65vw;
+    height: 3px;
+    border: 0px;
+    background-color: #DB2D1F;
+}
+
+#blockly-UI {
+    display: flex;
+    justify-content: center;
+}
+
+#blocklyDiv {
+    border: 1px solid black;
+
+    height: 82.5vh;
+    width: 75vw;
+}
+
+#textarea {
+    resize: none;
+    wrap: off;
+    width: 50vw;
+    font-family: monospace;
+    background: #dcdcdc;
+}
