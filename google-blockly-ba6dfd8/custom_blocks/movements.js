@@ -109,13 +109,13 @@ Blockly.Blocks['scan_while'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("While scan from current location to (latitude : ")
-        .appendField(new Blockly.FieldNumber(0, 0, 90, 1e-7), "LATITUDE")
+        .appendField(new Blockly.FieldNumber(0, -100, 100, 0.00001), "LATITUDE")
         .appendField(", longitude :")
-        .appendField(new Blockly.FieldNumber(0, 0, 90, 1e-7), "LONGITUDE")
+        .appendField(new Blockly.FieldNumber(0, -200, 200, 0.00001), "LONGITUDE")
         .appendField(")");
-    this.appendStatementInput("function")
-        .setCheck(null)
-        .appendField(new Blockly.FieldDropdown([["do","DO"], ["do once","DO_ONCE"]]), "while/once");
+    this.appendStatementInput("FUNCTION")
+        .setCheck("!Movement")
+        .appendField("do");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(290);

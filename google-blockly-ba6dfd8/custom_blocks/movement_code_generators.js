@@ -212,7 +212,17 @@ Blockly.Python['scan'] = function(block) {
   return code;
 };
 
-Blockly.JavaScript['change_speed'] = function(block) {
+Blockly.Python['scan_while'] = function (block) {
+  var number_latitude = block.getFieldValue('LATITUDE');
+  var number_longitude = block.getFieldValue('LONGITUDE');
+  var statements_function = Blockly.Python.statementToCode(block, 'FUNCTION');
+
+  code  = 'def function_to_execute_while(drone):\n' + statements_function + '\n' + '   return "stop"\n' +
+      'movement.scan(drone, ' + number_latitude + ', ' + number_longitude + ', function_to_execute_while=function_to_execute_while)\n';
+  return code
+}
+
+Blockly.Python['change_speed'] = function(block) {
   var number_speed = block.getFieldValue('speed');
   // TODO: Assemble JavaScript into code variable.
   var code = '...;\n';
